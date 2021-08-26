@@ -41,7 +41,7 @@ function displayTodos(todo){
     date.textContent = todo.date;
     todoTask.appendChild(date);
 
-    const remove = document.createElement('btn');
+    const remove = document.createElement('button');
     remove.classList = 'remove';
     const removeIcon = document.createElement('i');
     removeIcon.classList = 'far fa-trash-alt';
@@ -59,10 +59,16 @@ function displayPushedTodo(){
     })
 }
 
-function todoTask(){
+function createTodoTask(){
     createTodo();
     displayPushedTodo();
     console.log(todoList);
 }
 
-export default todoTask;
+function deleteTask(){
+    console.log(this.parentElement);
+    const selectedTask = this.parentElement;
+    selectedTask.textContent = '';
+}
+
+export{ createTodoTask, deleteTask};
