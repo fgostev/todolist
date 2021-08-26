@@ -47,6 +47,7 @@ function displayTodos(todo){
     removeIcon.classList = 'far fa-trash-alt';
     remove.appendChild(removeIcon);
     todoTask.appendChild(remove);
+
 }
 
 function displayPushedTodo(){
@@ -62,13 +63,25 @@ function displayPushedTodo(){
 function createTodoTask(){
     createTodo();
     displayPushedTodo();
+    idMatchIndex();
     console.log(todoList);
 }
+
+function idMatchIndex(){
+    const todoTasks = document.getElementsByClassName('task');
+    for(let i = 0; i < todoTasks.length; i++){
+        todoTasks[i].id = i;
+    }
+}
+
 
 function deleteTask(){
     console.log(this.parentElement);
     const selectedTask = this.parentElement;
-    selectedTask.textContent = '';
+    selectedTask.remove();
+    todoList.splice(parseInt(selectedTask.id), 1);
+    idMatchIndex();
+    console.log(todoList);
 }
 
 export{ createTodoTask, deleteTask};
