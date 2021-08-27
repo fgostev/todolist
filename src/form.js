@@ -6,10 +6,12 @@ function createForm(){
     description.type = 'text';
     description.id = 'description';
     description.name = 'description';
+    description.required = true;
     const date = document.createElement('input');
     date.type = 'date';
     date.id = 'date';
     date.name = 'date';
+    date.required = true;
     const submit = document.createElement('input');
     submit.type = 'text';
     submit.type = 'submit';

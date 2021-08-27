@@ -1,3 +1,4 @@
+import { parseISO, format} from 'date-fns';
 
 class Todo {
     constructor(description, date){
@@ -11,15 +12,23 @@ let todoList = [];
 function createTodo(){
     const inputDescription = document.getElementById('description').value;
     const inputDate = document.getElementById('date').value;
+    const formatedDate = format(parseISO(inputDate), 'MM/dd/yyyy');
     const newTodo = new Todo;
     newTodo.description = inputDescription;
-    newTodo.date = inputDate;
+    newTodo.date = formatedDate;
     todoList.push(newTodo);
 }
 
+function defaultTodoList(){
+    const clean = new Todo('Clean', format(new Date(), 'MM/dd/yyyy'));
+    const code = new Todo('Code for a while', format(new Date(), 'MM/dd/yyyy'))
+    const work = new Todo('work', format(new Date(28/8/21), 'MM/dd/yyyy'));
+    const explore = new Todo('explore something', format(new Date(28/8/21), 'MM/dd/yyyy'));
+    todoList.push(clean, code, work, explore);
+}
 
 function displayTodos(todo){
-    const todoContainer = document.getElementById('todoList');
+    const todoContainer = document.getElementById('inbox');
     const todoTask = document.createElement('div');
     todoTask.classList = 'task';
     todoContainer.appendChild(todoTask);
@@ -60,6 +69,15 @@ function displayPushedTodo(){
     })
 }
 
+function displayDefaultTodo(){
+    defaultTodoList();
+    todoList.forEach(todo => {
+        console.log(todo);
+        displayTodos(todo);
+        idMatchIndex();
+    })
+}
+
 function createTodoTask(){
     createTodo();
     displayPushedTodo();
@@ -84,4 +102,17 @@ function deleteTask(){
     console.log(todoList);
 }
 
-export{ createTodoTask, deleteTask};
+function todoTaskHandler(){
+    displayDefaultTodo();
+    const submit = document.getElementById('newTodoForm');
+    submit.addEventListener("submit", function(event){
+        event.preventDefault();
+        createTodoTask();
+        })
+        const removeBtns = document.getElementsByClassName('remove');
+        Array.from(removeBtns).forEach(btn => {
+            btn.addEventListener("click", deleteTask);
+      });
+};
+
+export{ todoTaskHandler, todoList};
