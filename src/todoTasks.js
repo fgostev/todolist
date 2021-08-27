@@ -27,6 +27,8 @@ function defaultTodoList(){
     todoList.push(clean, code, work, explore);
 }
 
+defaultTodoList();
+
 function displayTodos(todo){
     const todoContainer = document.getElementById('inbox');
     const todoTask = document.createElement('div');
@@ -70,13 +72,13 @@ function displayPushedTodo(){
 }
 
 function displayDefaultTodo(){
-    defaultTodoList();
     todoList.forEach(todo => {
         console.log(todo);
         displayTodos(todo);
         idMatchIndex();
     })
 }
+
 
 function createTodoTask(){
     createTodo();
@@ -102,8 +104,8 @@ function deleteTask(){
     console.log(todoList);
 }
 
+
 function todoTaskHandler(){
-    displayDefaultTodo();
     const submit = document.getElementById('newTodoForm');
     submit.addEventListener("submit", function(event){
         event.preventDefault();
@@ -115,4 +117,4 @@ function todoTaskHandler(){
       });
 };
 
-export{ todoTaskHandler, todoList};
+export{ todoTaskHandler, displayDefaultTodo, todoList};

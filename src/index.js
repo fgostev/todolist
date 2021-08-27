@@ -1,6 +1,6 @@
 import pageLoad from './initialPage';
 import form from './form.js';
-import { todoTaskHandler } from './todoTasks';
+import { todoTaskHandler, displayDefaultTodo} from './todoTasks';
 import loadToday from './dateSort';
 
 import './style.css';
@@ -15,9 +15,6 @@ import '@fortawesome/fontawesome-free/js/brands'
 pageLoad();
 form();
 
-// dateTest();
-
-
 
 function test(){
     console.log(`test ${this.id}`);
@@ -29,15 +26,18 @@ function navigationBar(){
     const tomorrowNav = document.getElementById('tomorrowNav');
     const thisWeekNav = document.getElementById('thisWeekNav');
 
-    inboxNav.addEventListener('click', test);
+    inboxNav.addEventListener('click', function(){
+        displayDefaultTodo();
+        todoTaskHandler();
+    });
     todayNav.addEventListener('click', loadToday);
     tomorrowNav.addEventListener('click', test);
     thisWeekNav.addEventListener('click', test);
 
 
 }
-
-navigationBar();
+displayDefaultTodo();
 todoTaskHandler();
+navigationBar();
 
 
