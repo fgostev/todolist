@@ -22,15 +22,15 @@ function createTodo(){
 function defaultTodoList(){
     const clean = new Todo('Clean', format(new Date(), 'MM/dd/yyyy'));
     const code = new Todo('Code for a while', format(new Date(), 'MM/dd/yyyy'))
-    const work = new Todo('work', format(new Date(28/8/21), 'MM/dd/yyyy'));
-    const explore = new Todo('explore something', format(new Date(28/8/21), 'MM/dd/yyyy'));
+    const work = new Todo('work', format(new Date('2021-08-30'), 'MM/dd/yyyy'));
+    const explore = new Todo('explore something', format(new Date('2021-08-30'), 'MM/dd/yyyy'));
     todoList.push(clean, code, work, explore);
 }
 
 defaultTodoList();
 
-function displayTodos(todo){
-    const todoContainer = document.getElementById('inbox');
+function displayTodos(todo, container){
+    const todoContainer = document.getElementById(container);
     const todoTask = document.createElement('div');
     todoTask.classList = 'task';
     todoContainer.appendChild(todoTask);
@@ -66,16 +66,18 @@ function displayPushedTodo(){
 
     todoList.forEach(todo => {
         if(todo === pushedToDo){
-        displayTodos(todo);
+        displayTodos(todo, 'inbox');
         }
     })
 }
 
-function displayDefaultTodo(){
+function displayAllTodos(){
+    const inbox = document.getElementById('inbox');
+    inbox.textContent = '';
     todoList.forEach(todo => {
         console.log(todo);
-        displayTodos(todo);
         idMatchIndex();
+        return displayTodos(todo, 'inbox');
     })
 }
 
@@ -117,4 +119,6 @@ function todoTaskHandler(){
       });
 };
 
-export{ todoTaskHandler, displayDefaultTodo, todoList};
+export{ todoTaskHandler, displayAllTodos, todoList, displayTodos};
+
+// export default displayAllTodos;

@@ -1,39 +1,58 @@
-import { format, isThisWeek, parseISO, isTomorrow} from 'date-fns';
-import { todoList} from './todoTasks';
+import { format, isThisWeek} from 'date-fns';
+import { todoList, displayTodos} from './todoTasks';
 
-// pseudo:
-// create a container for each section
-// appent to the container each answer
 
-function hideContainer(){
-    const inbox = document.getElementById('inbox');
-    inbox.textContent = '';
+function getToday(){
+    const today = format(new Date(), 'MM/dd/yyyy');
+    let todayList = []
+    todoList.forEach(todo => {
+        if(todo.date === today){
+            displayTodos(todo, 'inbox');
+            todayList.push(todo);
+        }       
+    })
 }
 
+function getTomorrow(){
+    const today = new Date();
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const tomorrowFormat = format(tomorrow, 'MM/dd/yyyy');
+    let tomorrowList = [];
+    todoList.forEach(todo => {
+        if(todo.date === tomorrowFormat){
+            displayTodos(todo, 'inbox');
+            tomorrowList.push(todo);
+        }       
+    })
+}
 
+function getThisWeek(){
+    let thisWeek = [];
+    todoList.forEach(todo => {
+        if(isThisWeek(new Date(todo.date))){
+            displayTodos(todo, 'inbox');
+            thisWeek.push(todo);
+        };
+    })
+}
 
 function loadToday(){
-    hideContainer();
-//     // let today = new Date();
-//     // let date = isDate('2021-08-26');
-//     let today = format(new Date(), 'MM/dd/yyyy');
-//     let tomorrow = new Date(today);
-//     tomorrow = format(tomorrow.setDate(tomorrow.getDate() + 1), 'MM/dd/yyyy')
-
-//     let thisWeekBool = isThisWeek(new Date(2021, 9, 1));
-
-//     // todoList.forEach(todo => {
-//     //     if(today === todo.date){
-//     //         console.log('todaye!');
-//     //     } 
-//     //     else if(tomorrow === todo.date){
-//     //         console.log("tomorrow");
-//     //     }
-//     //     console.log(tomorrow);
-//     // })
-//     // console.log(todoList.date)
-
-//     console.log(thisWeekBool);
+    const inbox = document.getElementById('inbox');
+    inbox.textContent = '';
+    getToday();
 }
 
-export default loadToday;
+function loadTomorrow(){
+    const inbox = document.getElementById('inbox');
+    inbox.textContent = '';
+    getTomorrow();
+}
+
+function loadThisWeek(){
+    const inbox = document.getElementById('inbox');
+    inbox.textContent = '';
+    getThisWeek()
+}
+
+export {  loadToday, loadTomorrow, loadThisWeek };
