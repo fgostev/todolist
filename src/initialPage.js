@@ -23,8 +23,8 @@ function createNavBar(){
     thisWeek.textContent = 'This week';
     thisWeek.id = 'thisWeekNav'
     const someDay = document.createElement('li');
-    someDay.textContent = 'Someday';
-    someDay.id = 'someDayNav';
+    someDay.textContent = 'Projects';
+    someDay.id = 'projects';
     ul.append(inbox, today, tomorrow, thisWeek, someDay);
     nav.appendChild(ul);
     return nav;
