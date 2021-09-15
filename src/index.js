@@ -2,6 +2,7 @@ import pageLoad from './initialPage';
 import form from './form.js';
 import { todoTaskHandler, displayAllTodos} from './todoTasks';
 import {loadTomorrow, loadToday, loadThisWeek} from './dateSort';
+import {openProjectForm, projectForm } from './projects';
 
 import './style.css';
 
@@ -15,6 +16,7 @@ import '@fortawesome/fontawesome-free/js/brands'
 pageLoad();
 form();
 displayAllTodos();
+projectForm();
 
 
 
@@ -27,6 +29,7 @@ function navigationBar(){
     const todayNav = document.getElementById('todayNav');
     const tomorrowNav = document.getElementById('tomorrowNav');
     const thisWeekNav = document.getElementById('thisWeekNav');
+    const addProjectBtn = document.getElementById('add');
 
     inboxNav.addEventListener('click', function(){
         displayAllTodos();
@@ -35,8 +38,7 @@ function navigationBar(){
     todayNav.addEventListener('click', loadToday);
     tomorrowNav.addEventListener('click', loadTomorrow);
     thisWeekNav.addEventListener('click', loadThisWeek);
-
-
+    addProjectBtn.addEventListener('click', openProjectForm);
 }
 todoTaskHandler();
 navigationBar();
