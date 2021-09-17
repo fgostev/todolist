@@ -25,15 +25,17 @@ function createNavBar(){
     thisWeek.id = 'thisWeekNav'
     ul.append(inbox, today, tomorrow, thisWeek);
     const projectsDiv = document.createElement('div');
-    const projects = document.createElement('h3');
-    projects.textContent = 'Projects';
-    projects.id = 'project-header';
+    const projectHeader = document.createElement('h3');
+    projectHeader.textContent = 'Projects';
+    projectHeader.id = 'project-header';
+    const listOfProjectsContainer = document.createElement('div');
+    listOfProjectsContainer.id = 'listOfProjects';
     const plusBtn = document.createElement('btn');
     const plusIcon = document.createElement('i');
     plusIcon.classList = 'fas fa-plus-square'
     plusBtn.id = 'add';
     plusBtn.appendChild(plusIcon);
-    nav.append(ul, projects, plusBtn);
+    nav.append(ul, projectHeader, plusBtn, listOfProjectsContainer);
     return nav;
 }
 

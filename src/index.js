@@ -2,7 +2,7 @@ import pageLoad from './initialPage';
 import form from './form.js';
 import { todoTaskHandler, displayAllTodos} from './todoTasks';
 import {loadTomorrow, loadToday, loadThisWeek} from './dateSort';
-import {openProjectForm, projectForm } from './projects';
+import {defaultProjects, openProjectForm, projectForm } from './projects';
 
 import './style.css';
 
@@ -17,12 +17,9 @@ pageLoad();
 form();
 displayAllTodos();
 projectForm();
+defaultProjects();
 
 
-
-function test(){
-    console.log(`test ${this.id}`);
-}
 
 function navigationBar(){
     const inboxNav = document.getElementById('inboxNav');

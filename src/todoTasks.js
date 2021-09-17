@@ -1,9 +1,10 @@
 import { parseISO, format} from 'date-fns';
 
 class Todo {
-    constructor(description, date){
+    constructor(description, date, project){
         this.description = description;
         this.date = date;
+        this.project = project;
     }
 }
 
@@ -119,6 +120,4 @@ function todoTaskHandler(){
       });
 };
 
-export{ todoTaskHandler, displayAllTodos, todoList, displayTodos};
-
-// export default displayAllTodos;
+export { todoTaskHandler, displayAllTodos, todoList, displayTodos};

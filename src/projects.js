@@ -1,6 +1,5 @@
-// Figure out why li and forms are not working
-// Try perhaps divs or something else!!!
-// figure out why multiply/wher code repeats
+// Display projects - figure out a way to display previously created projects
+// Make project to work as links (aka as todo tasks)
 
 
 const projects = [];
@@ -23,7 +22,7 @@ function projectForm(){
     formDiv.append(form);
     formDiv.style.display = 'none';
     nav.append(formDiv);
-    projectListeners();
+    createProjectListeners();
 }
 
 
@@ -33,31 +32,47 @@ function createProject(){
     projects.push(newProject);
 }
 
-// miissing list of projects
+function defaultProjects(){
+    const cleaning = "cleaning";
+    const study = 'study';
+    const work = 'work';
+    projects.push(cleaning, study, work);
+    displayExistingProjects();
+}
+
+function displayExistingProjects(){
+    const listOfProjectsContainer = document.getElementById('listOfProjects');
+    projects.forEach(project => {
+        const projectCon = document.createElement('div');
+        projectCon.textContent = project;
+        projectCon.id = 'project' + '-' + project;
+        projectCon.className = 'project';
+        listOfProjectsContainer.appendChild(projectCon);
+    })
+}
+
+// move list of projects into the default function of navbar
 
 function addToTheList(){
-    const nav = document.getElementById('sidebar')
-    const listOfProjectsContainer = document.createElement('div');
-    listOfProjectsContainer.id = 'listOfProjects';
-    nav.appendChild(listOfProjectsContainer);
+    const listOfProjectsContainer = document.getElementById('listOfProjects');
     const project = document.createElement('div');
     const projectName = projects[projects.length - 1];
+    project.id = 'project' + '-' + projectName;
+    project.className = 'project';
     project.textContent = projectName;
-    console.log(projects[projects.length - 1]);
     listOfProjectsContainer.appendChild(project);
 }
 
-function projectListeners(){
+function createProjectListeners(){
     const form = document.getElementById('projectForm');
     form.addEventListener("submit", function(event){
         event.preventDefault();
         createProject();
         addToTheList();
+        createLinksOnProjects();
         closeProjectForm();
-        console.log(projects);
     })
 }
-
 
 function openProjectForm(){
     const descriptionInput = document.getElementById('description');
@@ -73,8 +88,26 @@ function closeProjectForm(){
     console.log("Close!")
 }
 
+function test(){
+    console.log(`test!!!` + this.id);
+}
 
-export {projectForm, openProjectForm};
+function createLinksOnProjects(){
+    const projects = document.getElementsByClassName('project');
+    Array.from(projects).forEach(project => {
+        project.addEventListener('click', test);
+    })
+
+}
+
+export {projectForm, openProjectForm, defaultProjects};
 
 
-// create a btn and and add it separately to the main page
+// add a few default projects
+
+// All projects are clickable
+// once project click show only items related to the project
+
+// add in todo the option to pick a project
+
+// don't forget to think on the delete project from menu
