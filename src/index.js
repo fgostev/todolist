@@ -1,7 +1,7 @@
 import pageLoad from './initialPage';
 import form from './form.js';
 import { todoTaskHandler, displayAllTodos} from './todoTasks';
-import {loadTomorrow, loadToday, loadThisWeek} from './dateSort';
+import {loadTomorrow, loadToday, loadThisWeek} from './displaySortedTasks';
 import {defaultProjects, openProjectForm, projectForm} from './projects';
 
 

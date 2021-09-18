@@ -1,14 +1,13 @@
 import { format, isThisWeek} from 'date-fns';
 import { todoList, displayTodos} from './todoTasks';
+import {projects} from './projects';
 
 
 function getToday(){
     const today = format(new Date(), 'MM/dd/yyyy');
-    let todayList = []
     todoList.forEach(todo => {
         if(todo.date === today){
             displayTodos(todo, 'inbox');
-            todayList.push(todo);
         }       
     })
 }
@@ -18,21 +17,17 @@ function getTomorrow(){
     const tomorrow = new Date(today)
     tomorrow.setDate(tomorrow.getDate() + 1);
     const tomorrowFormat = format(tomorrow, 'MM/dd/yyyy');
-    let tomorrowList = [];
     todoList.forEach(todo => {
         if(todo.date === tomorrowFormat){
             displayTodos(todo, 'inbox');
-            tomorrowList.push(todo);
         }       
     })
 }
 
 function getThisWeek(){
-    let thisWeek = [];
     todoList.forEach(todo => {
         if(isThisWeek(new Date(todo.date))){
             displayTodos(todo, 'inbox');
-            thisWeek.push(todo);
         };
     })
 }
@@ -55,4 +50,15 @@ function loadThisWeek(){
     getThisWeek()
 }
 
-export {  loadToday, loadTomorrow, loadThisWeek };
+function loadProjectTasks(){
+    const inbox = document.getElementById('inbox');
+    inbox.textContent = '';
+
+    todoList.forEach(todo =>{
+        if(todo.project == this.textContent){
+            displayTodos(todo, 'inbox');
+        }
+    })
+}
+
+export {  loadToday, loadTomorrow, loadThisWeek, loadProjectTasks};

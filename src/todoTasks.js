@@ -25,9 +25,9 @@ function createTodo(){
 }
 
 function defaultTodoList(){
-    const clean = new Todo('Clean', format(new Date(), 'MM/dd/yyyy'));
-    const code = new Todo('Code for a while', format(new Date(), 'MM/dd/yyyy'))
-    const work = new Todo('work', format(new Date('2021-08-30'), 'MM/dd/yyyy'));
+    const clean = new Todo('Clean', format(new Date(), 'MM/dd/yyyy'), 'cleaning');
+    const code = new Todo('Code for a while', format(new Date(), 'MM/dd/yyyy'), 'study')
+    const work = new Todo('work', format(new Date('2021-08-30'), 'MM/dd/yyyy'), 'work');
     const explore = new Todo('explore something', format(new Date('2021-08-30'), 'MM/dd/yyyy'));
     todoList.push(clean, code, work, explore);
 }

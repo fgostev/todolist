@@ -1,5 +1,4 @@
-// make projects clickable
-// once click on a projects div changes and you sort it by project
+import {loadProjectTasks} from './displaySortedTasks';
 
 let projects = [];
 
@@ -88,14 +87,10 @@ function closeProjectForm(){
     console.log("Close!")
 }
 
-function test(){
-    console.log(`test!!!` + this.id);
-}
-
 function createLinksOnProjects(){
     const projects = document.getElementsByClassName('project');
     Array.from(projects).forEach(project => {
-        project.addEventListener('click', test);
+        project.addEventListener('click', loadProjectTasks);
     })
 }
 
@@ -113,7 +108,6 @@ function updateFormOptions(){
 export {projectForm, openProjectForm, defaultProjects, projects};
 
 
-// add a few default projects
 
 // All projects are clickable
 // once project click show only items related to the project
