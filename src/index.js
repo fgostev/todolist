@@ -2,7 +2,8 @@ import pageLoad from './initialPage';
 import form from './form.js';
 import { todoTaskHandler, displayAllTodos} from './todoTasks';
 import {loadTomorrow, loadToday, loadThisWeek} from './dateSort';
-import {defaultProjects, openProjectForm, projectForm } from './projects';
+import {defaultProjects, openProjectForm, projectForm} from './projects';
+
 
 import './style.css';
 
@@ -12,12 +13,11 @@ import '@fortawesome/fontawesome-free/js/regular'
 import '@fortawesome/fontawesome-free/js/brands'
 
 
-
 pageLoad();
+defaultProjects();
 form();
 displayAllTodos();
 projectForm();
-defaultProjects();
 
 
 

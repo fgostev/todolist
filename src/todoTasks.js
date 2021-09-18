@@ -1,3 +1,4 @@
+
 import { parseISO, format} from 'date-fns';
 
 class Todo {
@@ -13,11 +14,14 @@ let todoList = [];
 function createTodo(){
     const inputDescription = document.getElementById('description').value;
     const inputDate = document.getElementById('date').value;
+    const selectedProject = document.getElementById('selectProject').value;
     const formatedDate = format(parseISO(inputDate), 'MM/dd/yyyy');
     const newTodo = new Todo;
     newTodo.description = inputDescription;
     newTodo.date = formatedDate;
+    newTodo.project = selectedProject;
     todoList.push(newTodo);
+    console.log(todoList);
 }
 
 function defaultTodoList(){
@@ -44,7 +48,7 @@ function displayTodos(todo, container){
     done.appendChild(icon);
 
     const p = document.createElement('p');
-    p.classList.add('todoDescriptipn');
+    p.classList.add('todoDescription');
     p.textContent = todo.description;
     todoTask.appendChild(p);
 
@@ -76,7 +80,6 @@ function displayAllTodos(){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
     todoList.forEach(todo => {
-        console.log(todo);
         idMatchIndex();
         return displayTodos(todo, 'inbox');
     })
@@ -99,12 +102,10 @@ function idMatchIndex(){
 
 
 function deleteTask(){
-    console.log(this.parentElement);
     const selectedTask = this.parentElement;
     selectedTask.remove();
     todoList.splice(parseInt(selectedTask.id), 1);
     idMatchIndex();
-    console.log(todoList);
 }
 
 

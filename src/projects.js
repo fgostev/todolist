@@ -1,8 +1,7 @@
-// Display projects - figure out a way to display previously created projects
-// Make project to work as links (aka as todo tasks)
+// make projects clickable
+// once click on a projects div changes and you sort it by project
 
-
-const projects = [];
+let projects = [];
 
 function projectForm(){
     const nav = document.getElementById('sidebar');
@@ -12,8 +11,8 @@ function projectForm(){
     form.id = 'projectForm';
     const projectName =  document.createElement('input');
     projectName.type = 'text';
-    projectName.id = 'description';
-    projectName.name = 'description';
+    projectName.id = 'descriptionProject';
+    projectName.name = 'descriptionProject';
     projectName.required = true;
     const nameSubmit = document.createElement('input');
     nameSubmit.type = 'submit';
@@ -38,6 +37,7 @@ function defaultProjects(){
     const work = 'work';
     projects.push(cleaning, study, work);
     displayExistingProjects();
+    createLinksOnProjects();
 }
 
 function displayExistingProjects(){
@@ -50,8 +50,6 @@ function displayExistingProjects(){
         listOfProjectsContainer.appendChild(projectCon);
     })
 }
-
-// move list of projects into the default function of navbar
 
 function addToTheList(){
     const listOfProjectsContainer = document.getElementById('listOfProjects');
@@ -70,12 +68,13 @@ function createProjectListeners(){
         createProject();
         addToTheList();
         createLinksOnProjects();
+        updateFormOptions();
         closeProjectForm();
     })
 }
 
 function openProjectForm(){
-    const descriptionInput = document.getElementById('description');
+    const descriptionInput = document.getElementById('descriptionProject');
     descriptionInput.value = '';
     const formDiv = document.getElementById('projectModal');
     formDiv.style.display = 'block';
@@ -97,10 +96,20 @@ function createLinksOnProjects(){
     Array.from(projects).forEach(project => {
         project.addEventListener('click', test);
     })
-
 }
 
-export {projectForm, openProjectForm, defaultProjects};
+function updateFormOptions(){
+    const selectProject = document.getElementById('selectProject');
+    selectProject.textContent = "";
+    projects.forEach(project => {
+        const option = document.createElement('option');
+        option.value = project;
+        option.textContent = project;
+        selectProject.append(option);
+    })
+}
+
+export {projectForm, openProjectForm, defaultProjects, projects};
 
 
 // add a few default projects
