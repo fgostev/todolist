@@ -27,7 +27,8 @@ function projectForm(){
 
 function createProject(){
     const form = document.getElementById('projectForm');
-    const newProject = form.description.value
+    const newProject = form.descriptionProject.value;
+    console.log(newProject);
     projects.push(newProject);
 }
 
