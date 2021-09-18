@@ -8,6 +8,7 @@ function createHeader(){
 
 function createNavBar(){
     const nav = document.createElement('nav');
+    nav.id = 'sidebar';
     content.appendChild(nav);
     const ul = document.createElement('ul');
     const inbox = document.createElement('li');
@@ -22,11 +23,19 @@ function createNavBar(){
     const thisWeek = document.createElement('li');
     thisWeek.textContent = 'This week';
     thisWeek.id = 'thisWeekNav'
-    const someDay = document.createElement('li');
-    someDay.textContent = 'Projects';
-    someDay.id = 'projects';
-    ul.append(inbox, today, tomorrow, thisWeek, someDay);
-    nav.appendChild(ul);
+    ul.append(inbox, today, tomorrow, thisWeek);
+    const projectsDiv = document.createElement('div');
+    const projectHeader = document.createElement('h3');
+    projectHeader.textContent = 'Projects';
+    projectHeader.id = 'project-header';
+    const listOfProjectsContainer = document.createElement('div');
+    listOfProjectsContainer.id = 'listOfProjects';
+    const plusBtn = document.createElement('btn');
+    const plusIcon = document.createElement('i');
+    plusIcon.classList = 'fas fa-plus-square'
+    plusBtn.id = 'add';
+    plusBtn.appendChild(plusIcon);
+    nav.append(ul, projectHeader, plusBtn, listOfProjectsContainer);
     return nav;
 }
 

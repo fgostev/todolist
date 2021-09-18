@@ -1,9 +1,11 @@
+
 import { parseISO, format} from 'date-fns';
 
 class Todo {
-    constructor(description, date){
+    constructor(description, date, project){
         this.description = description;
         this.date = date;
+        this.project = project;
     }
 }
 
@@ -12,17 +14,20 @@ let todoList = [];
 function createTodo(){
     const inputDescription = document.getElementById('description').value;
     const inputDate = document.getElementById('date').value;
+    const selectedProject = document.getElementById('selectProject').value;
     const formatedDate = format(parseISO(inputDate), 'MM/dd/yyyy');
     const newTodo = new Todo;
     newTodo.description = inputDescription;
     newTodo.date = formatedDate;
+    newTodo.project = selectedProject;
     todoList.push(newTodo);
+    console.log(todoList);
 }
 
 function defaultTodoList(){
-    const clean = new Todo('Clean', format(new Date(), 'MM/dd/yyyy'));
-    const code = new Todo('Code for a while', format(new Date(), 'MM/dd/yyyy'))
-    const work = new Todo('work', format(new Date('2021-08-30'), 'MM/dd/yyyy'));
+    const clean = new Todo('Clean', format(new Date(), 'MM/dd/yyyy'), 'cleaning');
+    const code = new Todo('Code for a while', format(new Date(), 'MM/dd/yyyy'), 'study')
+    const work = new Todo('work', format(new Date('2021-08-30'), 'MM/dd/yyyy'), 'work');
     const explore = new Todo('explore something', format(new Date('2021-08-30'), 'MM/dd/yyyy'));
     todoList.push(clean, code, work, explore);
 }
@@ -43,7 +48,7 @@ function displayTodos(todo, container){
     done.appendChild(icon);
 
     const p = document.createElement('p');
-    p.classList.add('todoDescriptipn');
+    p.classList.add('todoDescription');
     p.textContent = todo.description;
     todoTask.appendChild(p);
 
@@ -75,7 +80,6 @@ function displayAllTodos(){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
     todoList.forEach(todo => {
-        console.log(todo);
         idMatchIndex();
         return displayTodos(todo, 'inbox');
     })
@@ -98,12 +102,10 @@ function idMatchIndex(){
 
 
 function deleteTask(){
-    console.log(this.parentElement);
     const selectedTask = this.parentElement;
     selectedTask.remove();
     todoList.splice(parseInt(selectedTask.id), 1);
     idMatchIndex();
-    console.log(todoList);
 }
 
 
@@ -119,6 +121,4 @@ function todoTaskHandler(){
       });
 };
 
-export{ todoTaskHandler, displayAllTodos, todoList, displayTodos};
-
-// export default displayAllTodos;
+export { todoTaskHandler, displayAllTodos, todoList, displayTodos};
