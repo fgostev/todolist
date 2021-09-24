@@ -1,6 +1,5 @@
 import { format, isThisWeek} from 'date-fns';
 import { todoList, displayTodos} from './todoTasks';
-import {projects} from './projects';
 
 
 function getToday(){
@@ -50,7 +49,7 @@ function loadThisWeek(){
     getThisWeek()
 }
 
-function loadProjectTasks(){
+function loadAllProjectTasks(){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
 
@@ -61,4 +60,4 @@ function loadProjectTasks(){
     })
 }
 
-export {  loadToday, loadTomorrow, loadThisWeek, loadProjectTasks};
+export {  loadToday, loadTomorrow, loadThisWeek, loadAllProjectTasks};

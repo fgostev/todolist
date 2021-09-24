@@ -11,6 +11,22 @@ class Todo {
 
 let todoList = [];
 
+const saveToLocalStorage = () =>{
+    localStorage.setItem('storedTodo', JSON.stringify(todoList));
+}
+
+function displayStoragedTasks(){
+let storedTodo = JSON.parse(localStorage.getItem('storedTodo'));
+
+    if(storedTodo){
+        todoList = storedTodo;
+        displayAllTodos(todoList);
+    }   else{
+        defaultTodoList();
+    }
+}
+
+
 function createTodo(){
     const inputDescription = document.getElementById('description').value;
     const inputDate = document.getElementById('date').value;
@@ -21,7 +37,6 @@ function createTodo(){
     newTodo.date = formatedDate;
     newTodo.project = selectedProject;
     todoList.push(newTodo);
-    console.log(todoList);
 }
 
 function defaultTodoList(){
@@ -30,9 +45,11 @@ function defaultTodoList(){
     const work = new Todo('work', format(new Date('2021-08-30'), 'MM/dd/yyyy'), 'work');
     const explore = new Todo('explore something', format(new Date('2021-08-30'), 'MM/dd/yyyy'));
     todoList.push(clean, code, work, explore);
+    displayAllTodos(todoList);
 }
 
-defaultTodoList();
+// displayStoragedItems();
+
 
 function displayTodos(todo, container){
     const todoContainer = document.getElementById(container);
@@ -63,7 +80,7 @@ function displayTodos(todo, container){
     removeIcon.classList = 'far fa-trash-alt';
     remove.appendChild(removeIcon);
     todoTask.appendChild(remove);
-
+    
 }
 
 function displayPushedTodo(){
@@ -76,10 +93,10 @@ function displayPushedTodo(){
     })
 }
 
-function displayAllTodos(){
+function displayAllTodos(list){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
-    todoList.forEach(todo => {
+    list.forEach(todo => {
         idMatchIndex();
         return displayTodos(todo, 'inbox');
     })
@@ -106,6 +123,7 @@ function deleteTask(){
     selectedTask.remove();
     todoList.splice(parseInt(selectedTask.id), 1);
     idMatchIndex();
+    saveToLocalStorage();
 }
 
 
@@ -114,6 +132,7 @@ function todoTaskHandler(){
     submit.addEventListener("submit", function(event){
         event.preventDefault();
         createTodoTask();
+        saveToLocalStorage();
         })
         const removeBtns = document.getElementsByClassName('remove');
         Array.from(removeBtns).forEach(btn => {
@@ -121,4 +140,4 @@ function todoTaskHandler(){
       });
 };
 
-export { todoTaskHandler, displayAllTodos, todoList, displayTodos};
+export { todoTaskHandler, displayAllTodos, todoList, displayTodos, defaultTodoList, displayStoragedTasks};
