@@ -1,9 +1,8 @@
 import pageLoad from './initialPage';
 import form from './form.js';
-import { todoTaskHandler, displayAllTodos} from './todoTasks';
+import { todoTaskHandler, displayAllTodos, todoList, displayStoragedTasks} from './todoTasks';
 import {loadTomorrow, loadToday, loadThisWeek} from './displaySortedTasks';
-import {defaultProjects, openProjectForm, projectForm} from './projects';
-
+import {displayStoragedProjects, openProjectForm, projectForm} from './projects';
 
 import './style.css';
 
@@ -12,13 +11,14 @@ import '@fortawesome/fontawesome-free/js/solid'
 import '@fortawesome/fontawesome-free/js/regular'
 import '@fortawesome/fontawesome-free/js/brands'
 
-
 pageLoad();
-defaultProjects();
+displayStoragedTasks();
+// defaultTodoList();
+displayStoragedProjects();
 form();
-displayAllTodos();
 projectForm();
 
+// keep a thought to change the order for further adjustment
 
 
 function navigationBar(){
@@ -29,7 +29,7 @@ function navigationBar(){
     const addProjectBtn = document.getElementById('add');
 
     inboxNav.addEventListener('click', function(){
-        displayAllTodos();
+        displayAllTodos(todoList);
         // todoTaskHandler();
     });
     todayNav.addEventListener('click', loadToday);
@@ -37,6 +37,7 @@ function navigationBar(){
     thisWeekNav.addEventListener('click', loadThisWeek);
     addProjectBtn.addEventListener('click', openProjectForm);
 }
+
 todoTaskHandler();
 navigationBar();
 

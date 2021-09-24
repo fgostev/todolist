@@ -1,6 +1,25 @@
-import {loadProjectTasks} from './displaySortedTasks';
+import {loadAllProjectTasks} from './displaySortedTasks';
 
 let projects = [];
+
+const saveProjectToLocalStorage = () =>{
+    localStorage.setItem('storedProjects', JSON.stringify(projects));
+}
+
+function displayStoragedProjects(){
+let storedProjects = JSON.parse(localStorage.getItem('storedProjects'));
+
+    if(storedProjects){
+        projects = storedProjects;
+        displayExistingProjects();
+        createLinksOnProjects();
+    }   else{
+        defaultProjects();
+        createLinksOnProjects();
+    }
+}
+
+
 
 function projectForm(){
     const nav = document.getElementById('sidebar');
@@ -29,6 +48,7 @@ function createProject(){
     const newProject = form.descriptionProject.value;
     console.log(newProject);
     projects.push(newProject);
+    saveProjectToLocalStorage();
 }
 
 function defaultProjects(){
@@ -37,7 +57,6 @@ function defaultProjects(){
     const work = 'work';
     projects.push(cleaning, study, work);
     displayExistingProjects();
-    createLinksOnProjects();
 }
 
 function displayExistingProjects(){
@@ -90,7 +109,7 @@ function closeProjectForm(){
 function createLinksOnProjects(){
     const projects = document.getElementsByClassName('project');
     Array.from(projects).forEach(project => {
-        project.addEventListener('click', loadProjectTasks);
+        project.addEventListener('click', loadAllProjectTasks);
     })
 }
 
@@ -105,13 +124,5 @@ function updateFormOptions(){
     })
 }
 
-export {projectForm, openProjectForm, defaultProjects, projects};
+export {projectForm, openProjectForm, displayStoragedProjects, projects};
 
-
-
-// All projects are clickable
-// once project click show only items related to the project
-
-// add in todo the option to pick a project
-
-// don't forget to think on the delete project from menu
