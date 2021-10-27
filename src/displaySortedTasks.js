@@ -1,5 +1,6 @@
 import { format, isThisWeek} from 'date-fns';
-import { todoList, displayTodos} from './todoTasks';
+import { todoList, displayTodos, todoTaskHandler, todoRemovalListener} from './todoTasks';
+// import {deleteProjectListener} from './projects';
 
 
 function getToday(){
@@ -35,18 +36,38 @@ function loadToday(){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
     getToday();
+    todoTaskHandler();
 }
 
 function loadTomorrow(){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
     getTomorrow();
+    todoTaskHandler();
 }
 
 function loadThisWeek(){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
     getThisWeek()
+    todoTaskHandler();
+}
+
+// dom create delete message
+
+function deleteMessage(display, projectName){
+        const deleteMessageDiv = document.createElement('div');
+        const message = document.createElement('p');
+        message.textContent = "Empty project! Delete it?";
+        deleteMessageDiv.id = "noTasks";
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = "delete";
+        deleteBtn.classList = "deleteProject";
+        deleteBtn.id = projectName;
+
+        deleteMessageDiv.append(message, deleteBtn);
+        display.append(deleteMessageDiv);
 }
 
 function loadAllProjectTasks(){
@@ -54,10 +75,16 @@ function loadAllProjectTasks(){
     inbox.textContent = '';
 
     todoList.forEach(todo =>{
-        if(todo.project == this.textContent){
+    if(todo.project == this.textContent){
             displayTodos(todo, 'inbox');
+            todoRemovalListener();
+
         }
     })
+    // if(inbox.textContent === ''){
+    //     deleteMessage(inbox, this.textContent);
+    //     // deleteProjectListener();
+    // }
 }
 
-export {  loadToday, loadTomorrow, loadThisWeek, loadAllProjectTasks};
+export {  loadToday, loadTomorrow, loadThisWeek, loadAllProjectTasks, deleteMessage};

@@ -1,7 +1,7 @@
 function createHeader(){
     const header = document.createElement('header');
     const h1 = document.createElement('h1');
-    h1.textContent = 'Todo list';
+    h1.textContent = 'TodoList';
     header.appendChild(h1);
     return header;
 }
@@ -31,11 +31,13 @@ function createNavBar(){
     const listOfProjectsContainer = document.createElement('div');
     listOfProjectsContainer.id = 'listOfProjects';
     const plusBtn = document.createElement('btn');
+    plusBtn.textContent = "Add Project"
     const plusIcon = document.createElement('i');
     plusIcon.classList = 'fas fa-plus-square'
+    plusIcon.id = 'plusIcon';
     plusBtn.id = 'add';
     plusBtn.appendChild(plusIcon);
-    nav.append(ul, projectHeader, plusBtn, listOfProjectsContainer);
+    nav.append(ul, projectHeader, listOfProjectsContainer, plusBtn);
     return nav;
 }
 
@@ -56,7 +58,8 @@ function pageLoad(){
     const header = createHeader();
     const nav = createNavBar();
     const taskView = createMain();
-    content.append(header, nav, taskView);
+    document.body.append(header);
+    content.append (header, nav, taskView);
 }
 
 

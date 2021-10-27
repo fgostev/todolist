@@ -1,6 +1,6 @@
 import pageLoad from './initialPage';
 import form from './form.js';
-import { todoTaskHandler, displayAllTodos, todoList, displayStoragedTasks} from './todoTasks';
+import { todoTaskHandler, displayAllTodos, todoList, displayStoragedTasks, idMatchIndex} from './todoTasks';
 import {loadTomorrow, loadToday, loadThisWeek} from './displaySortedTasks';
 import {displayStoragedProjects, openProjectForm, projectForm} from './projects';
 
@@ -30,7 +30,7 @@ function navigationBar(){
 
     inboxNav.addEventListener('click', function(){
         displayAllTodos(todoList);
-        // todoTaskHandler();
+        todoTaskHandler();
     });
     todayNav.addEventListener('click', loadToday);
     tomorrowNav.addEventListener('click', loadTomorrow);

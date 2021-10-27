@@ -21,13 +21,15 @@ function createForm(){
     selectProject.id = 'selectProject';
 
     projects.forEach(project => {
-        console.log(project);
         const option = document.createElement('option');
         option.value = project;
         option.textContent = project;
         selectProject.append(option);
     })
 
+    const optionNone = document.createElement('option');
+    optionNone.text = "None"
+    selectProject.append(optionNone);
 
     const submit = document.createElement('input');
     submit.type = 'text';
