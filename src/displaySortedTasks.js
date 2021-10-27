@@ -78,7 +78,6 @@ function loadAllProjectTasks(){
     if(todo.project == this.textContent){
             displayTodos(todo, 'inbox');
             todoRemovalListener();
-
         }
     })
     // if(inbox.textContent === ''){

@@ -82,6 +82,9 @@ function displayTodos(todo, container){
     removeIcon.classList = 'far fa-trash-alt';
     remove.appendChild(removeIcon);
     todoTask.appendChild(remove);
+
+    todoRemovalListener();
+
 }
 
 function displayPushedTodo(){
