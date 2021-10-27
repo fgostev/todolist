@@ -1,5 +1,8 @@
 
 import { parseISO, format} from 'date-fns';
+// import { deleteProjectListener, projects } from './projects';
+import {deleteMessage} from './displaySortedTasks';
+
 
 class Todo {
     constructor(description, date, project){
@@ -48,7 +51,6 @@ function defaultTodoList(){
     displayAllTodos(todoList);
 }
 
-// displayStoragedItems();
 
 
 function displayTodos(todo, container){
@@ -80,7 +82,6 @@ function displayTodos(todo, container){
     removeIcon.classList = 'far fa-trash-alt';
     remove.appendChild(removeIcon);
     todoTask.appendChild(remove);
-    
 }
 
 function displayPushedTodo(){
@@ -107,7 +108,6 @@ function createTodoTask(){
     createTodo();
     displayPushedTodo();
     idMatchIndex();
-    console.log(todoList);
 }
 
 function idMatchIndex(){
@@ -117,15 +117,39 @@ function idMatchIndex(){
     }
 }
 
-
 function deleteTask(){
+    const inbox = document.getElementById('inbox');
+    const displayedTasksCount = document.getElementById('inbox').childElementCount;
     const selectedTask = this.parentElement;
-    selectedTask.remove();
-    todoList.splice(parseInt(selectedTask.id), 1);
-    idMatchIndex();
-    saveToLocalStorage();
-}
+    const selectedTaskDescription = selectedTask.firstChild.nextSibling.textContent;
+    if(displayedTasksCount === 1){
 
+        todoList.forEach(todo => {
+            if(todo.description == selectedTaskDescription){
+                console.log(selectedTaskDescription);
+                console.log(todo.project);
+                selectedTask.remove();
+                deleteMessage(inbox, todo.project);
+                deleteProjectListener();
+
+                // stopped here!
+                // MAKE SOME TESTS!!!
+            }
+        })
+        }
+        selectedTask.remove();
+        todoList.splice(parseInt(selectedTask.id), 1);
+        idMatchIndex();
+        saveToLocalStorage();
+    // compareProjectsWithTasks();
+}
+// compare tasks with projects, if no task with project delete
+
+
+// function compareProjectsWithTasks(){
+//     console.log("Test!");
+//     const 
+// }
 
 function todoTaskHandler(){
     const submit = document.getElementById('newTodoForm');
@@ -133,11 +157,16 @@ function todoTaskHandler(){
         event.preventDefault();
         createTodoTask();
         saveToLocalStorage();
+        todoRemovalListener();
         })
-        const removeBtns = document.getElementsByClassName('remove');
-        Array.from(removeBtns).forEach(btn => {
-            btn.addEventListener("click", deleteTask);
-      });
 };
 
-export { todoTaskHandler, displayAllTodos, todoList, displayTodos, defaultTodoList, displayStoragedTasks};
+function todoRemovalListener(){
+    const removeBtns = document.getElementsByClassName('remove');
+        Array.from(removeBtns).forEach(btn => {
+            btn.addEventListener("click", deleteTask);
+            });
+            saveToLocalStorage();
+}
+
+export { todoTaskHandler, displayAllTodos, todoList, displayTodos, defaultTodoList, displayStoragedTasks, idMatchIndex, todoRemovalListener};
