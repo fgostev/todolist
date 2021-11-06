@@ -80,10 +80,10 @@ function loadAllProjectTasks(){
             todoRemovalListener();
         }
     })
-    // if(inbox.textContent === ''){
-    //     deleteMessage(inbox, this.textContent);
-    //     // deleteProjectListener();
-    // }
+    if(inbox.textContent === ''){
+        deleteMessage(inbox, this.textContent);
+        // deleteProjectListener();
+    }
 }
 
 export {  loadToday, loadTomorrow, loadThisWeek, loadAllProjectTasks, deleteMessage};

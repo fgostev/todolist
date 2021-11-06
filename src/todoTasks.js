@@ -1,14 +1,15 @@
 
 import { parseISO, format} from 'date-fns';
 // import { deleteProjectListener, projects } from './projects';
-import {deleteMessage} from './displaySortedTasks';
+// import {deleteMessage} from './displaySortedTasks';
 
 
 class Todo {
-    constructor(description, date, project){
+    constructor(description, date, project, id){
         this.description = description;
         this.date = date;
         this.project = project;
+        this.id = id;
     }
 }
 
@@ -39,14 +40,24 @@ function createTodo(){
     newTodo.description = inputDescription;
     newTodo.date = formatedDate;
     newTodo.project = selectedProject;
+    newTodo.id = uniqueId();
     todoList.push(newTodo);
+
+    console.log(todoList);
 }
 
+const uniqueId = () => {
+    const dateString = Date.now().toString(36);
+    const randomness = Math.random().toString(36).substr(2);
+    return dateString + randomness;
+  };
+
+
 function defaultTodoList(){
-    const clean = new Todo('Clean', format(new Date(), 'MM/dd/yyyy'), 'cleaning');
-    const code = new Todo('Code for a while', format(new Date(), 'MM/dd/yyyy'), 'study')
-    const work = new Todo('work', format(new Date('2021-08-30'), 'MM/dd/yyyy'), 'work');
-    const explore = new Todo('explore something', format(new Date('2021-08-30'), 'MM/dd/yyyy'));
+    const clean = new Todo('Clean', format(new Date(), 'MM/dd/yyyy'), 'cleaning', uniqueId());
+    const code = new Todo('Code for a while', format(new Date(), 'MM/dd/yyyy'), 'study', uniqueId())
+    const work = new Todo('work', format(new Date('2021-08-30'), 'MM/dd/yyyy'), 'work', uniqueId());
+    const explore = new Todo('explore something', format(new Date('2021-08-30'), 'MM/dd/yyyy'), 'none' ,uniqueId());
     todoList.push(clean, code, work, explore);
     displayAllTodos(todoList);
 }
@@ -57,6 +68,7 @@ function displayTodos(todo, container){
     const todoContainer = document.getElementById(container);
     const todoTask = document.createElement('div');
     todoTask.classList = 'task';
+    todoTask.id = todo.id;
     todoContainer.appendChild(todoTask);
 
     const done = document.createElement('btn');
@@ -101,7 +113,6 @@ function displayAllTodos(list){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
     list.forEach(todo => {
-        idMatchIndex();
         return displayTodos(todo, 'inbox');
     })
 }
@@ -110,49 +121,24 @@ function displayAllTodos(list){
 function createTodoTask(){
     createTodo();
     displayPushedTodo();
-    idMatchIndex();
 }
 
-function idMatchIndex(){
-    const todoTasks = document.getElementsByClassName('task');
-    for(let i = 0; i < todoTasks.length; i++){
-        todoTasks[i].id = i;
-    }
-}
 
 function deleteTask(){
-    const inbox = document.getElementById('inbox');
-    const displayedTasksCount = document.getElementById('inbox').childElementCount;
     const selectedTask = this.parentElement;
-    const selectedTaskDescription = selectedTask.firstChild.nextSibling.textContent;
-    if(displayedTasksCount === 1){
+    console.log(selectedTask.id);
 
-        todoList.forEach(todo => {
-            if(todo.description == selectedTaskDescription){
-                console.log(selectedTaskDescription);
-                console.log(todo.project);
-                selectedTask.remove();
-                deleteMessage(inbox, todo.project);
-                deleteProjectListener();
-
-                // stopped here!
-                // MAKE SOME TESTS!!!
-            }
-        })
+    todoList.forEach(todo => {
+        if(todo.id === selectedTask.id){
+            const todoIndex = todoList.indexOf(todo);
+            todoList.splice(todoIndex, 1);
+            selectedTask.remove();
+            console.log(todoList);
         }
-        selectedTask.remove();
-        todoList.splice(parseInt(selectedTask.id), 1);
-        idMatchIndex();
         saveToLocalStorage();
-    // compareProjectsWithTasks();
+    })
+
 }
-// compare tasks with projects, if no task with project delete
-
-
-// function compareProjectsWithTasks(){
-//     console.log("Test!");
-//     const 
-// }
 
 function todoTaskHandler(){
     const submit = document.getElementById('newTodoForm');
@@ -169,7 +155,6 @@ function todoRemovalListener(){
         Array.from(removeBtns).forEach(btn => {
             btn.addEventListener("click", deleteTask);
             });
-            saveToLocalStorage();
 }
 
-export { todoTaskHandler, displayAllTodos, todoList, displayTodos, defaultTodoList, displayStoragedTasks, idMatchIndex, todoRemovalListener};
+export { todoTaskHandler, displayAllTodos, todoList, displayTodos, defaultTodoList, displayStoragedTasks, todoRemovalListener};

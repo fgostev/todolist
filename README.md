@@ -12,11 +12,19 @@ Things to do:
 
 Starting now:
 
-!!!Test the app, check if the delete fun actually works
+<!-- !!!Test the app, check if the delete fun actually works
 
--Glitch comes from creating a task more than one time. Start by checking all task creation functions
--Glitch happens if you create a task inside of a project.
+-Glitch with creating tasks for projects/days. 
 
+Steps to take:
+
+-remove the form during the week days
+-remove project selection. Have only to add it and date on projects and inbox. nowhere else. -->
+
+FOCUS NOW:!!!!
+
+-create unique ID's
+-Make them work together
 
 
 Notes:
