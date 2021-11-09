@@ -140,43 +140,25 @@ function updateFormOptions(){
 }
 
 // event listener for delete btn, once deleted load inbox
+function deleteProjectBtn(){
+    const projectListDom = document.getElementById('listOfProjects')
+    const deleteBtnId = this.id;
+    const projectIndx = projects.indexOf(deleteBtnId);
+    projectListDom.removeChild(projectListDom.childNodes[projectIndx])
+    projects.splice(projectIndx, 1);
+    displayAllTodos(todoList);
+    // todoTaskHandler();
+
+    console.log(projects);
+
+    saveProjectToLocalStorage();
+}
+
+function deleteProjectListener(){
+    const deleteBtn = document.getElementsByClassName('deleteProject')[0];
+    deleteBtn.addEventListener('click', deleteProjectBtn);
+}
 
 
-
-// think how to fix this function.
-// The issue so far looks like it is related to the ids
-// Try to make a match ID function
-
-// function deleteProjectBtn(){
-//     const projectName =  this.id;
-//     const projectNameChecker = 'project-' + projectName;
-//     const allProjects = document.getElementsByClassName('project');
-//     const listOfProjects = document.getElementById("listOfProjects")
-//     const inbox = document.getElementById('inbox');
-
-//     Array.from(allProjects).forEach(project =>{
-//         if(project.id === projectNameChecker){
-//             projects.splice(projectName, 1);
-//             listOfProjects.textContent = "";
-//             displayExistingProjects();
-//             // displayAllTodos(inbox);
-        
-//                 displayAllTodos(todoList);
-
-//         }
-//     })
-
-//     // displayExistingProjects();
-//     // displayAllTodos(todoList);
-//     // saveProjectToLocalStorage();
-// }
-
-// function deleteProjectListener(){
-//     const deleteBtn = document.getElementsByClassName('deleteProject')[0];
-//     deleteBtn.addEventListener('click', deleteProjectBtn);
-// }
-
-// deleteProjectListener in export!!!!!!!
-
-export {projectForm, openProjectForm, displayStoragedProjects, projects};
+export {projectForm, openProjectForm, displayStoragedProjects, deleteProjectListener, projects};
 

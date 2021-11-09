@@ -1,6 +1,6 @@
 import { format, isThisWeek} from 'date-fns';
 import { todoList, displayTodos, todoTaskHandler, todoRemovalListener} from './todoTasks';
-// import {deleteProjectListener} from './projects';
+import {deleteProjectListener} from './projects';
 
 
 function getToday(){
@@ -71,6 +71,8 @@ function deleteMessage(display, projectName){
 
         deleteMessageDiv.append(message, deleteBtn);
         display.append(deleteMessageDiv);
+
+        deleteProjectListener();
 }
 
 function loadAllProjectTasks(){
