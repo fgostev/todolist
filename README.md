@@ -12,20 +12,15 @@ Things to do:
 
 Starting now:
 
-<!-- !!!Test the app, check if the delete fun actually works
-
--Glitch with creating tasks for projects/days. 
-
-Steps to take:
-
--remove the form during the week days
--remove project selection. Have only to add it and date on projects and inbox. nowhere else. -->
 
 FOCUS NOW:!!!!
 
--create unique ID's
--Make them work together
+-When todoTasks are done, make a message to delete the project
 
+
+Bug:
+
+-Whenever leave to any other project, and return to inbox gets create in the form the same ammount of todotasks as clicked in the projects
 
 Notes:
 -check for patterns for BG

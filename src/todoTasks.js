@@ -1,7 +1,8 @@
 
 import { parseISO, format} from 'date-fns';
+// import { loadAllProjectTasks } from './displaySortedTasks';
 // import { deleteProjectListener, projects } from './projects';
-// import {deleteMessage} from './displaySortedTasks';
+import {deleteMessage} from './displaySortedTasks';
 
 
 class Todo {
@@ -67,7 +68,7 @@ function defaultTodoList(){
 function displayTodos(todo, container){
     const todoContainer = document.getElementById(container);
     const todoTask = document.createElement('div');
-    todoTask.classList = 'task';
+    todoTask.classList = 'task' + " " + todo.project;
     todoTask.id = todo.id;
     todoContainer.appendChild(todoTask);
 
@@ -112,6 +113,7 @@ function displayPushedTodo(){
 function displayAllTodos(list){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
+    inbox.classList = 'inbox';
     list.forEach(todo => {
         return displayTodos(todo, 'inbox');
     })
@@ -126,17 +128,33 @@ function createTodoTask(){
 
 function deleteTask(){
     const selectedTask = this.parentElement;
-    console.log(selectedTask.id);
+    const inboxElementsAmmount = document.getElementById('inbox').childElementCount;
+    const inboxClassName = document.getElementById('inbox').className;
+    
+    console.log(inboxClassName);
 
-    todoList.forEach(todo => {
-        if(todo.id === selectedTask.id){
-            const todoIndex = todoList.indexOf(todo);
-            todoList.splice(todoIndex, 1);
-            selectedTask.remove();
-            console.log(todoList);
-        }
-        saveToLocalStorage();
-    })
+
+    // STOP HERE! Need to get a differnce between week days delete and project.
+
+        todoList.forEach(todo => {
+            if(todo.id === selectedTask.id && inboxElementsAmmount > 1 || 
+                todo.id === selectedTask.id && inboxClassName === "inbox" ||
+                todo.id === selectedTask.id && inboxClassName === "today" ||
+                todo.id === selectedTask.id && inboxClassName === "tomorrow" ||
+                todo.id === selectedTask.id && inboxClassName === "thisWeek"
+            ){
+                const todoIndex = todoList.indexOf(todo);
+                todoList.splice(todoIndex, 1);
+                selectedTask.remove();
+                console.log(todoList);
+            }else if( todo.id === selectedTask.id && inboxElementsAmmount === 1){
+                const todoIndex = todoList.indexOf(todo);
+                todoList.splice(todoIndex, 1);
+                selectedTask.remove();
+                deleteMessage(inbox, this.textContent);
+            }
+        })
+    saveToLocalStorage();
 
 }
 

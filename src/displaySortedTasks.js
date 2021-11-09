@@ -34,6 +34,7 @@ function getThisWeek(){
 
 function loadToday(){
     const inbox = document.getElementById('inbox');
+    inbox.classList = "today";
     inbox.textContent = '';
     getToday();
     todoTaskHandler();
@@ -42,6 +43,7 @@ function loadToday(){
 function loadTomorrow(){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
+    inbox.classList = "tomorrow";
     getTomorrow();
     todoTaskHandler();
 }
@@ -49,6 +51,7 @@ function loadTomorrow(){
 function loadThisWeek(){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
+    inbox.classList = "thisWeek"
     getThisWeek()
     todoTaskHandler();
 }
@@ -76,6 +79,7 @@ function loadAllProjectTasks(){
 
     todoList.forEach(todo =>{
     if(todo.project == this.textContent){
+            inbox.classList = todo.project;
             displayTodos(todo, 'inbox');
             todoRemovalListener();
         }
