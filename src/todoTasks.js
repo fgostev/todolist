@@ -151,7 +151,7 @@ function deleteTask(){
                 const todoIndex = todoList.indexOf(todo);
                 todoList.splice(todoIndex, 1);
                 selectedTask.remove();
-                deleteMessage(inbox, this.textContent);
+                deleteMessage(inbox, inboxClassName);
             }
         })
     saveToLocalStorage();

@@ -80,7 +80,7 @@ function loadAllProjectTasks(){
     todoList.forEach(todo =>{
     if(todo.project == this.textContent){
             inbox.classList = todo.project;
-            displayTodos(todo, 'inbox');
+            displayTodos(todo, inbox.className);
             todoRemovalListener();
         }
     })
