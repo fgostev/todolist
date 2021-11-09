@@ -12,12 +12,15 @@ Things to do:
 
 Starting now:
 
-!!!Test the app, check if the delete fun actually works
 
--Glitch comes from creating a task more than one time. Start by checking all task creation functions
--Glitch happens if you create a task inside of a project.
+FOCUS NOW:!!!!
+
+-When todoTasks are done, make a message to delete the project
 
 
+Bug:
+
+-Whenever leave to any other project, and return to inbox gets create in the form the same ammount of todotasks as clicked in the projects
 
 Notes:
 -check for patterns for BG
