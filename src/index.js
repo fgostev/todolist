@@ -32,7 +32,6 @@ function navigationBar(){
 
     inboxNav.addEventListener('click', function(){
         displayAllTodos(todoList);
-        todoTaskHandler();
     });
     todayNav.addEventListener('click', loadToday);
     tomorrowNav.addEventListener('click', loadTomorrow);
