@@ -13,10 +13,9 @@ Things to do:
 Starting now:
 
 
-FOCUS NOW:!!!!
+FOCUS NOW ON THE BUG:!!!!
 
--When todoTasks are done, make a message to delete the project
-
+-create new repo for the bug
 
 Bug:
 

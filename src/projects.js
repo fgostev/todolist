@@ -1,6 +1,6 @@
 import { yearsToMonths } from 'date-fns';
 import {loadAllProjectTasks} from './displaySortedTasks';
-import {displayAllTodos, todoList, todoTaskHandler} from './todoTasks';
+import {displayAllTodos, todoList} from './todoTasks';
 
 let projects = [];
 

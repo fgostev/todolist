@@ -133,9 +133,6 @@ function deleteTask(){
     
     console.log(inboxClassName);
 
-
-    // STOP HERE! Need to get a differnce between week days delete and project.
-
         todoList.forEach(todo => {
             if(todo.id === selectedTask.id && inboxElementsAmmount > 1 || 
                 todo.id === selectedTask.id && inboxClassName === "inbox" ||
@@ -158,6 +155,13 @@ function deleteTask(){
 
 }
 
+function todoRemovalListener(){
+    const removeBtns = document.getElementsByClassName('remove');
+        Array.from(removeBtns).forEach(btn => {
+            btn.addEventListener("click", deleteTask);
+            });
+}
+
 function todoTaskHandler(){
     const submit = document.getElementById('newTodoForm');
     submit.addEventListener("submit", function(event){
@@ -168,11 +172,6 @@ function todoTaskHandler(){
         })
 };
 
-function todoRemovalListener(){
-    const removeBtns = document.getElementsByClassName('remove');
-        Array.from(removeBtns).forEach(btn => {
-            btn.addEventListener("click", deleteTask);
-            });
-}
+
 
 export { todoTaskHandler, displayAllTodos, todoList, displayTodos, defaultTodoList, displayStoragedTasks, todoRemovalListener};

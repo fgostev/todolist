@@ -1,5 +1,5 @@
 import { format, isThisWeek} from 'date-fns';
-import { todoList, displayTodos, todoTaskHandler, todoRemovalListener} from './todoTasks';
+import { todoList, displayTodos, todoRemovalListener} from './todoTasks';
 import {deleteProjectListener} from './projects';
 
 
@@ -37,7 +37,7 @@ function loadToday(){
     inbox.classList = "today";
     inbox.textContent = '';
     getToday();
-    todoTaskHandler();
+    todoRemovalListener();
 }
 
 function loadTomorrow(){
@@ -45,7 +45,7 @@ function loadTomorrow(){
     inbox.textContent = '';
     inbox.classList = "tomorrow";
     getTomorrow();
-    todoTaskHandler();
+    todoRemovalListener();
 }
 
 function loadThisWeek(){
@@ -53,7 +53,7 @@ function loadThisWeek(){
     inbox.textContent = '';
     inbox.classList = "thisWeek"
     getThisWeek()
-    todoTaskHandler();
+    todoRemovalListener();
 }
 
 // dom create delete message
