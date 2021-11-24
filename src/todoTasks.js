@@ -2,8 +2,7 @@
 import { parseISO, format} from 'date-fns';
 // import { loadAllProjectTasks } from './displaySortedTasks';
 // import { deleteProjectListener, projects } from './projects';
-import {deleteMessage} from './displaySortedTasks';
-
+import {deleteMessage, emptyOrNotCheck} from './displaySortedTasks';
 
 class Todo {
     constructor(description, date, project, id){
@@ -144,6 +143,7 @@ function deleteTask(){
                 todoList.splice(todoIndex, 1);
                 selectedTask.remove();
                 console.log(todoList);
+                emptyOrNotCheck();
             }else if( todo.id === selectedTask.id && inboxElementsAmmount === 1){
                 const todoIndex = todoList.indexOf(todo);
                 todoList.splice(todoIndex, 1);

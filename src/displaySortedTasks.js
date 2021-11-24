@@ -77,7 +77,6 @@ function createEmptyMessage(selectedDay){
     message.textContent = `No tasks for ${selectedDay}. Would you like to create a new one?`;
     emptyMessage.append(message);
     inbox.append(emptyMessage);
-    console.log(selectedNav);
 }
 
 // dom create delete message
