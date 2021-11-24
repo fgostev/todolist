@@ -39,6 +39,7 @@ function navigationBar(){
     addProjectBtn.addEventListener('click', openProjectForm);
 }
 
+
 todoTaskHandler();
 navigationBar();
 

@@ -37,6 +37,7 @@ function loadToday(){
     inbox.classList = "today";
     inbox.textContent = '';
     getToday();
+    emptyOrNotCheck();
     todoRemovalListener();
 }
 
@@ -45,6 +46,7 @@ function loadTomorrow(){
     inbox.textContent = '';
     inbox.classList = "tomorrow";
     getTomorrow();
+    emptyOrNotCheck();
     todoRemovalListener();
 }
 
@@ -52,8 +54,29 @@ function loadThisWeek(){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
     inbox.classList = "thisWeek"
-    getThisWeek()
+    getThisWeek();
+    emptyOrNotCheck();
     todoRemovalListener();
+}
+
+function emptyOrNotCheck(){
+    const inbox = document.getElementById('inbox')
+    const amountOfTasks = inbox.childElementCount;
+    const selectedNav = inbox.className;
+    if(amountOfTasks === 0 && selectedNav === "thisWeek"){
+        createEmptyMessage("this week");
+    }else if(amountOfTasks === 0 && selectedNav !== "thisWeek"){
+        createEmptyMessage(selectedNav);
+    }
+}
+
+function createEmptyMessage(selectedDay){
+    const message = document.createElement('p');
+    const inbox = document.getElementById('inbox');
+    const emptyMessage = document.createElement('div');
+    message.textContent = `No tasks for ${selectedDay}. Would you like to create a new one?`;
+    emptyMessage.append(message);
+    inbox.append(emptyMessage);
 }
 
 // dom create delete message
@@ -92,4 +115,4 @@ function loadAllProjectTasks(){
     }
 }
 
-export {  loadToday, loadTomorrow, loadThisWeek, loadAllProjectTasks, deleteMessage};
+export {  loadToday, loadTomorrow, loadThisWeek, loadAllProjectTasks, deleteMessage, emptyOrNotCheck};
