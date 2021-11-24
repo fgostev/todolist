@@ -12,10 +12,9 @@ Things to do:
 
 Starting now:
 
-
-FOCUS NOW ON THE BUG:!!!!
-
--create new repo for the bug
+-empty message
+-button to open the form
+-once task added - display it in inbox. 
 
 Bug:
 
