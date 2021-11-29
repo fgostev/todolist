@@ -69,9 +69,9 @@ function emptyOrNotCheck(){
     const inbox = document.getElementById('inbox')
     const amountOfTasks = inbox.childElementCount;
     const selectedNav = inbox.className;
-    if(amountOfTasks === 0 && selectedNav === "thisWeek"){
-        createEmptyMessage("this week");
-    }else if(amountOfTasks === 0 && selectedNav !== "thisWeek"){
+    if(amountOfTasks === 0 && selectedNav === "inbox"){
+        createEmptyMessage("in the inbox");
+    }else if(amountOfTasks === 0 && selectedNav !== "inbox"){
         createEmptyMessage(selectedNav);
     }
 }
@@ -80,7 +80,7 @@ function createEmptyMessage(selectedDay){
     const message = document.createElement('p');
     const inbox = document.getElementById('inbox');
     const emptyMessage = document.createElement('div');
-    message.textContent = `No tasks for ${selectedDay}. Would you like to create a new one?`;
+    message.textContent = `No tasks ${selectedDay}. Would you like to create a new one?`;
     emptyMessage.append(message);
     inbox.append(emptyMessage);
 }

@@ -13,11 +13,10 @@ Things to do:
 Starting now:
 
 -empty message      ++++ done
--button to open the form
--once task added - display it in inbox.  
--show on top which nav selected
--checklist
-
+-button to open the form +++
+-once task added - display it in inbox.  +++
+-show on top which nav selected   ++++
+-styling
 
 Notes:
 -check for patterns for BG

@@ -96,7 +96,13 @@ function displayTodos(todo, container){
     todoTask.appendChild(remove);
 
     todoRemovalListener();
+}
 
+function doneDelete(){
+    const doneButtons = document.getElementsByClassName('done');
+    Array.from(doneButtons).forEach( button => {
+        button.addEventListener('click', deleteTask);
+    })
 }
 
 function displayPushedTodo(){
@@ -122,6 +128,8 @@ function displayAllTodos(list){
 
 
 function createTodoTask(){
+    const inbox = document.getElementById('inbox');
+    inbox.textContent = "";
     createTodo();
     displayPushedTodo();
 }
@@ -162,6 +170,7 @@ function todoRemovalListener(){
         Array.from(removeBtns).forEach(btn => {
             btn.addEventListener("click", deleteTask);
             });
+            doneDelete();
 }
 
 function todoTaskHandler(){
