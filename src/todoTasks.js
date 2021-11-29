@@ -96,7 +96,13 @@ function displayTodos(todo, container){
     todoTask.appendChild(remove);
 
     todoRemovalListener();
+}
 
+function doneDelete(){
+    const doneButtons = document.getElementsByClassName('done');
+    Array.from(doneButtons).forEach( button => {
+        button.addEventListener('click', deleteTask);
+    })
 }
 
 function displayPushedTodo(){
@@ -113,6 +119,8 @@ function displayAllTodos(list){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
     inbox.classList = 'inbox';
+    const header = document.getElementById('inboxHeader');
+    header.textContent = "Inbox";
     list.forEach(todo => {
         return displayTodos(todo, 'inbox');
     })
@@ -120,6 +128,8 @@ function displayAllTodos(list){
 
 
 function createTodoTask(){
+    const inbox = document.getElementById('inbox');
+    inbox.textContent = "";
     createTodo();
     displayPushedTodo();
 }
@@ -160,15 +170,20 @@ function todoRemovalListener(){
         Array.from(removeBtns).forEach(btn => {
             btn.addEventListener("click", deleteTask);
             });
+            doneDelete();
 }
 
 function todoTaskHandler(){
     const submit = document.getElementById('newTodoForm');
+    const formBtn = document.getElementById('btnOpenForm');
     submit.addEventListener("submit", function(event){
         event.preventDefault();
         createTodoTask();
         saveToLocalStorage();
         todoRemovalListener();
+        submit.style.display = "none";
+        formBtn.style.display = "block";
+        displayAllTodos(todoList);
         })
 };
 
