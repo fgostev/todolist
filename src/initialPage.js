@@ -46,7 +46,10 @@ function createMain(){
     div.id = 'todoList'
     const h2 = document.createElement('h2');
     h2.textContent = 'Tasks'
-    div.appendChild(h2);
+    const h3 = document.createElement('h3');
+    h3.textContent = 'Inbox';
+    h3.id = 'inboxHeader'
+    div.append(h2, h3);
     const inbox = document.createElement('div');
     inbox.id = 'inbox';
     div.appendChild(inbox);

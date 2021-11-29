@@ -113,6 +113,8 @@ function displayAllTodos(list){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
     inbox.classList = 'inbox';
+    const header = document.getElementById('inboxHeader');
+    header.textContent = "Inbox";
     list.forEach(todo => {
         return displayTodos(todo, 'inbox');
     })
@@ -164,11 +166,15 @@ function todoRemovalListener(){
 
 function todoTaskHandler(){
     const submit = document.getElementById('newTodoForm');
+    const formBtn = document.getElementById('btnOpenForm');
     submit.addEventListener("submit", function(event){
         event.preventDefault();
         createTodoTask();
         saveToLocalStorage();
         todoRemovalListener();
+        submit.style.display = "none";
+        formBtn.style.display = "block";
+        displayAllTodos(todoList);
         })
 };
 

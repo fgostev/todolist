@@ -34,6 +34,8 @@ function getThisWeek(){
 
 function loadToday(){
     const inbox = document.getElementById('inbox');
+    const header = document.getElementById('inboxHeader');
+    header.textContent = "Today";
     inbox.classList = "today";
     inbox.textContent = '';
     getToday();
@@ -43,6 +45,8 @@ function loadToday(){
 
 function loadTomorrow(){
     const inbox = document.getElementById('inbox');
+    const header = document.getElementById('inboxHeader');
+    header.textContent = "Tomorrow";
     inbox.textContent = '';
     inbox.classList = "tomorrow";
     getTomorrow();
@@ -52,6 +56,8 @@ function loadTomorrow(){
 
 function loadThisWeek(){
     const inbox = document.getElementById('inbox');
+    const header = document.getElementById('inboxHeader');
+    header.textContent = "This Week"
     inbox.textContent = '';
     inbox.classList = "thisWeek"
     getThisWeek();
@@ -102,8 +108,11 @@ function loadAllProjectTasks(){
     const inbox = document.getElementById('inbox');
     inbox.textContent = '';
 
+    const header = document.getElementById('inboxHeader');
+
     todoList.forEach(todo =>{
     if(todo.project == this.textContent){
+            header.textContent = todo.project;
             inbox.classList = todo.project;
             displayTodos(todo, 'inbox');
             todoRemovalListener();
@@ -111,7 +120,6 @@ function loadAllProjectTasks(){
     })
     if(inbox.textContent === ''){
         deleteMessage(inbox, this.textContent);
-        // deleteProjectListener();
     }
 }
 
