@@ -1,4 +1,3 @@
-import { yearsToMonths } from 'date-fns';
 import {loadAllProjectTasks} from './displaySortedTasks';
 import {displayAllTodos, todoList} from './todoTasks';
 
@@ -109,7 +108,6 @@ function openProjectForm(){
     btn.style.display = "none";
     const formDiv = document.getElementById('projectModal');
     formDiv.style.display = 'block';
-    console.log("Open!")
 }
 
 function closeProjectForm(){
@@ -117,7 +115,6 @@ function closeProjectForm(){
     formDiv.style.display = 'none';
     const btn = document.getElementById("add");
     btn.style.display = "block";
-    console.log("Close!")
 }
 
 function createLinksOnProjects(){
@@ -125,7 +122,6 @@ function createLinksOnProjects(){
     Array.from(projects).forEach(project => {
         project.addEventListener('click', loadAllProjectTasks);
     })
-    // deleteProjectListener();
 }
 
 function updateFormOptions(){
@@ -139,18 +135,14 @@ function updateFormOptions(){
     })
 }
 
-// event listener for delete btn, once deleted load inbox
 function deleteProjectBtn(){
     const projectListDom = document.getElementById('listOfProjects')
     const deleteBtnId = this.id;
     const projectIndx = projects.indexOf(deleteBtnId);
     projectListDom.removeChild(projectListDom.childNodes[projectIndx])
     projects.splice(projectIndx, 1);
+    updateFormOptions();
     displayAllTodos(todoList);
-    // todoTaskHandler();
-
-    console.log(projects);
-
     saveProjectToLocalStorage();
 }
 

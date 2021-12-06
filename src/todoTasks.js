@@ -1,7 +1,5 @@
 
 import { parseISO, format} from 'date-fns';
-// import { loadAllProjectTasks } from './displaySortedTasks';
-// import { deleteProjectListener, projects } from './projects';
 import {deleteMessage, emptyOrNotCheck} from './displaySortedTasks';
 
 class Todo {
@@ -42,8 +40,6 @@ function createTodo(){
     newTodo.project = selectedProject;
     newTodo.id = uniqueId();
     todoList.push(newTodo);
-
-    console.log(todoList);
 }
 
 const uniqueId = () => {
@@ -140,8 +136,6 @@ function deleteTask(){
     const inboxElementsAmmount = document.getElementById('inbox').childElementCount;
     const inboxClassName = document.getElementById('inbox').className;
     
-    console.log(inboxClassName);
-
         todoList.forEach(todo => {
             if(todo.id === selectedTask.id && inboxElementsAmmount > 1 || 
                 todo.id === selectedTask.id && inboxClassName === "inbox" ||
@@ -152,7 +146,6 @@ function deleteTask(){
                 const todoIndex = todoList.indexOf(todo);
                 todoList.splice(todoIndex, 1);
                 selectedTask.remove();
-                console.log(todoList);
                 emptyOrNotCheck();
             }else if( todo.id === selectedTask.id && inboxElementsAmmount === 1){
                 const todoIndex = todoList.indexOf(todo);
