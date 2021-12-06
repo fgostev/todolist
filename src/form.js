@@ -43,6 +43,7 @@ function createForm(){
 }
 
 function formButton(){
+
     const btn = document.createElement('button');
     btn.id = "btnOpenForm";
     const icon = document.createElement('i');
@@ -56,7 +57,6 @@ function openForm(){
   const btn = document.getElementById('btnOpenForm');
   btn.style.display = "none";
   form.style.display = "flex";
-  console.log("Booo!");
 }
 
 function form(){

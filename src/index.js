@@ -17,10 +17,6 @@ displayStoragedProjects();
 emptyOrNotCheck();
 form();
 projectForm();
-console.log(todoList);
-
-
-// keep a thought to change the order for further adjustment
 
 
 function navigationBar(){
